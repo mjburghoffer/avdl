@@ -1,0 +1,50 @@
+{
+  "name": "avdl",
+  "version": "0.0.1",
+  "description": "Avro for Typescript",
+  "license": "MIT",
+  "repository": "",
+  "author": {
+    "name": "Matthew Burghoffer",
+    "email": "mjburghoffer@gmail.com"
+  },
+  "keywords": [
+    "avro",
+    "avsc",
+    "idl",
+    "avdl",
+    "schema"
+  ],
+  "files": [
+    "build"
+  ],
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "scripts": {
+    "clean": "rimraf build && rimraf src/avdl/*.*",
+    "lint": "tslint --force --format verbose \"src/**/*.ts\"",
+    "build": "yarn run clean && yarn run lint && yarn run antlr4ts && echo Using TypeScript && tsc --version && tsc --pretty",
+    "test": "mocha",
+    "watch": "yarn run build -- --watch",
+    "watch:test": "yarn run test -- --watch",
+    "antlr4ts": "antlr4ts -visitor -o src/avdl Avdl.g4"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "dependencies": {
+    "antlr4": "^4.7.1",
+    "antlr4ts": "^0.4.1-alpha.0",
+    "typescript": "^2.5.2"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/mocha": "^2.2.42",
+    "antlr4ts-cli": "^0.4.0-alpha.4",
+    "chai": "^4.1.2",
+    "mocha": "^3.5.0",
+    "mocha-typescript": "^1.1.7",
+    "rimraf": "^2.6.1",
+    "tslint": "^5.7.0"
+  }
+}
